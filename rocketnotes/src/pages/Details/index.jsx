@@ -1,18 +1,25 @@
 // import { Fragment } from "react"       <fragment>    
 
-import { Container } from './styles';
+import { Container, Links } from './styles';
+import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
+import { Section } from "../../components/Section";
+
+
 export function Details(){//todo componente tem começar com a letra Maiuscula 
 
   return(
     <Container>
-    <h1> Olá mundão </h1>
-    <span>Bruno Eduardo</span>
+    <Header/>
+    <Section title="Links úteis">
+      <Links>
+        <li><a href="#">https://react-icons.github.io/react-icons/</a></li>
+        <li><a href="#">https://react-icons.github.io/react-icons/</a></li>
+      </Links>
 
-    <Button title="Entrar" loading />
-    <Button title="Cadastrar"/>
+    </Section>
+
     <Button title="Voltar" />
-    <Button title={10} />
 
     </Container>
   )
