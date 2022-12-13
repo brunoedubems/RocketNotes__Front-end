@@ -1,5 +1,5 @@
- import { Container, Links,Content } from './styles';
-import { Tag } from "../../components/Tag";
+import { Container, Links, Content } from './styles';
+import { Tag } from "../../components/Tags";
 import { Header } from "../../components/Header";
 import { Section } from "../../components/Section";
 import { Button } from "../../components/Button";
@@ -15,7 +15,7 @@ export function Details(){//todo componente tem começar com a letra Maiuscula
     <main>
     <Content>
 
-    <ButtonText title="Escluir nota"/>
+    <ButtonText title="Escluir nota" isActive/>
     <h1>Introdução ao React</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
        Autem voluptatum dignissimos animi alias ea maiores, atque, 
@@ -40,5 +40,5 @@ export function Details(){//todo componente tem começar com a letra Maiuscula
     </Content>
     </main>
     </Container>
-  )
+  );
 }  
