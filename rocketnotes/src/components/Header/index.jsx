@@ -6,7 +6,7 @@ import { Container, Profile, Logout } from "./styles";
 export function Header (){
 return(
     <Container>
-        <Profile>
+        <Profile to="/profile">
             <img 
             src="http://github.com/brunoedubems.png" 
             alt="Foto do usuário" />

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import GlobalStyles from './styles/global';
 import{  ThemeProvider } from 'styled-components'; 
 
-import { SignUp } from './pages/SignUp';
+import { Routes } from './routes';
 
 import theme from './styles/theme';
 
@@ -11,7 +11,7 @@ ReactDOM.render(
   <React.StrictMode >
     <ThemeProvider theme={ theme }>
     <GlobalStyles />
-   <SignUp />
+   <Routes />
 
     </ThemeProvider>
   </React.StrictMode>,
