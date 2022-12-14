@@ -11,7 +11,7 @@ return(
             src="http://github.com/brunoedubems.png" 
             alt="Foto do usuário" />
         
-            <div className="">
+            <div>
                 <span>Bem vindo</span>
                 <strong>Bruno Eduardo Magalhães</strong>
             </div>

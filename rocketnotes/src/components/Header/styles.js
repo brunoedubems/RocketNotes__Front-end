@@ -36,7 +36,7 @@ export const Profile = styled(Link)`
         
             span{
                 font-size: 14px;
-                color: ${({ theme}) => theme.COLORS.BACKGROUND_100};
+                color: ${({ theme}) => theme.COLORS.WHITE};
             }
 
             strong{
