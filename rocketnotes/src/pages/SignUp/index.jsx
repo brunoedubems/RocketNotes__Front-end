@@ -19,7 +19,7 @@ export function SignUp() {
     }
 
     api.post("/users",{ name, email, password })
-    .then(() => {"Usuário cadastrado com sucesso! ";
+    .then(() => { alert("Usuário cadastrado com sucesso! ");
     })
     .catch( error => {
     if(error.response){

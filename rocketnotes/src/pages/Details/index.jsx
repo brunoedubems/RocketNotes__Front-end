@@ -17,8 +17,18 @@ const navigate = useNavigate();
 
 
 function handleBack(){
-  navigate("/");
+  navigate(-1);
 }
+
+async function handleRemove(){
+  const confirm = window.confirm("Deseja realmente remover?");
+  
+  if( confirm ){
+    await api.delete(`/notes/${params.id}`);
+    navigate(-1);
+  }
+}
+
 
 useEffect(() => {
   async function fetchNote(){
@@ -38,7 +48,11 @@ useEffect(() => {
     <main>
     <Content>
 
-    <ButtonText title="Escluir nota" isActive/>
+    <ButtonText 
+    title="Excluir nota" 
+    onClick={handleRemove} 
+    />
+
     <h1>
       {data.title}
     </h1>
@@ -81,8 +95,8 @@ useEffect(() => {
     </Section>
 }
     <Button 
-    title="Voltar"
-    onClick={handleBack} 
+      title="Voltar"
+      onClick={handleBack} 
     />
 
     </Content>

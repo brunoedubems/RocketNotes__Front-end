@@ -1,37 +1,42 @@
 import { useState } from 'react';
 import {FiArrowLeft, FiUser, FiMail, FiLock, FiCamera} from 'react-icons/fi'
-import { Link } from 'react-router-dom';
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 import { useAuth } from '../../hooks/auth';
-
 import { api } from '../../services/api';
 import { Container, Form, Avatar } from './styles';
 import avatarPlaceholder from '../../assets/avatar.svg' ;
+import { useNavigate } from 'react-router-dom';
 
 export function Profile(){
     const {user, updateProfile} = useAuth();
     
     const [ name, setName] = useState(user.name);
     const [ email, setEmail] = useState(user.email);
-    const [ passwordOld, setpasswordOld] = useState();
-    const [ passwordNew, setpasswordNew] = useState();
-
-
-const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
+    const [ passwordOld, setPasswordOld] = useState();
+    const [ passwordNew, setPasswordNew] = useState();
+    
+    
+    const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
     
     const [avatar, setAvatar] = useState(avatarUrl);
     const [avatarFile, setAvatarFile] = useState(null);
-    
+    const navigate = useNavigate();
+
+    function handleBack(){
+        navigate(-1);
+      }
+
 async function handleUpdate(){
-    const user = {
+    const updated = {
         name,
         email,
         password: passwordNew,
         old_password: passwordOld,
     }
+    const userUpdated = Object.assign(user, updated );
 
-    await updateProfile({ user, avatarFile } )
+    await updateProfile({ user: userUpdated, avatarFile } )
 }
 
 function handleChangeAvatar(event){
@@ -47,9 +52,9 @@ function handleChangeAvatar(event){
     return(
         <Container>
             <header>
-                <Link to="/">
-                <FiArrowLeft />
-                </Link>
+                <button type="button" onClick={handleBack}>
+                <FiArrowLeft  size={24} />
+                </button>
             </header>
 
         <Form>
@@ -91,14 +96,14 @@ function handleChangeAvatar(event){
             placeholder="Senha atual"
             Type="password"
             icon={FiLock}
-            onChange={ e => setpasswordOld(e.target.value)}
+            onChange={ e => setPasswordOld(e.target.value)}
             />
 
             <Input
             placeholder="Nova Senha"
             Type="password"
             icon={FiLock}
-            onChange={ e => setpasswordNew(e.target.value)}
+            onChange={ e => setPasswordNew(e.target.value)}
             />
             <Button title="Salvar" onClick={handleUpdate} />
 
