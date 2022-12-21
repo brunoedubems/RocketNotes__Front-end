@@ -9,7 +9,19 @@ import { ButtonText } from '../../components/ButtonText';
 import { api } from '../../services/api';
 
 export function Home(){
-    const [tags, setTags] = useState();
+    const [tags, setTags] = useState([]);
+    const [tagsSelected, setTagsSelected] = useState([]);
+    
+    function hadleTagSelected(tagName){
+        const alreadySelected = tagsSelected.includes(tagName);
+        if(alreadySelected){
+            const filteredTags = tagsSelected.filter(tag => tag !== tagName);
+            setTagsSelected(filteredTags);
+        }else{
+            setTagsSelected(prevState => [...prevState, tagName]);
+        }
+
+    }
 
 
     useEffect(() => {
@@ -31,7 +43,8 @@ export function Home(){
         <Menu>
             <li><ButtonText 
             title="Todos" 
-            isActive 
+            onClick={() => hadleTagSelected("all")}
+            isActive ={tagsSelected.length === 0 }
             />
              </li>
             {
@@ -39,6 +52,8 @@ export function Home(){
                     <li key={String(tag.id)}>
                         <ButtonText 
                         title={tag.name} 
+                        onClick={() => hadleTagSelected(tag.name)}
+                        isActive ={tagsSelected.includes(tag.name)}
                         /> 
                     </li>
                 ))
