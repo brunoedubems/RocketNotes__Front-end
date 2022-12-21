@@ -1,44 +1,93 @@
 import { Container, Links, Content } from './styles';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Tag } from "../../components/Tags";
 import { Header } from "../../components/Header";
 import { Section } from "../../components/Section";
 import { Button } from "../../components/Button";
 import { ButtonText } from "../../components/ButtonText";
+import { useState, useEffect } from 'react';
+import { api } from '../../services/api';
 
 
 export function Details(){//todo componente tem começar com a letra Maiuscula 
+
+  const [data, setData] = useState(null);
+const params = useParams();
+const navigate = useNavigate();
+
+
+function handleBack(){
+  navigate("/");
+}
+
+useEffect(() => {
+  async function fetchNote(){
+    const response = await api.get(`/notes/${params.id}`);
+    setData(response.data);
+
+  }
+  fetchNote();
+}, [])
 
   return(
     <Container>
     <Header/>
 
+{
+  data &&
     <main>
     <Content>
 
     <ButtonText title="Escluir nota" isActive/>
-    <h1>Introdução ao React</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-       Autem voluptatum dignissimos animi alias ea maiores, atque, 
-       mollitia tempore ut similique suscipit eveniet velit illo fuga 
-       expedita a veniam distinctio dolorum.</p>
+    <h1>
+      {data.title}
+    </h1>
+    <p>
+      {  data.description}
+       </p>
 
-
+{
+  data.links&&
     <Section title="Links úteis">
       <Links>
-        <li><a href="#">https://react-icons.github.io/react-icons/</a></li>
-        <li><a href="#">https://react-icons.github.io/react-icons/</a></li>
+       {
+        data.links.map(link => (
+
+          <li key={String(link.id)}>
+              <a href={link.url} target="_blank">
+                {link.url}
+              </a>
+            
+            </li>
+        ))
+        }
+
       </Links>
 
     </Section>
 
+}
+{
+  data.tags &&
     <Section title="Marcadores">
-      <Tag title="express"/>
-      <Tag title="nodejs"/>
+      {
+         data.tags.map(tags => (
+            <Tag 
+            key={String(tags.id)}
+            title={tags.name}
+            />
+         ))
+      }
     </Section>
+}
+    <Button 
+    title="Voltar"
+    onClick={handleBack} 
+    />
 
-    <Button title="Voltar" />
     </Content>
     </main>
+}
     </Container>
   );
 }  
