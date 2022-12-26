@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
 import { TextArea } from '../../components/TextArea';
+
 import { NoteItem } from '../../components/NoteItem';
 import { Section } from '../../components/Section';
 import { Button } from '../../components/Button';
