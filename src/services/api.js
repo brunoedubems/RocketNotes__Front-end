@@ -1,6 +1,6 @@
 import axios from 'axios';
 
 export const api = axios.create({
-    baseURL: "https://curiango.netlify.app"
+    baseURL: "https://venerable-peony-18d64a.netlify.app/"
 });
 
