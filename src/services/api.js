@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const api = axios.create({
-    baseURL: "https://venerable-peony-18d64a.netlify.app/"
+    baseURL: "https://wild-pear-tick-sock.cyclic.app"
+    
 });
 
